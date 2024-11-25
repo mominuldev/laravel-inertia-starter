@@ -6,7 +6,7 @@ defineProps({
     }
 })
 
-    
+
 </script>
 
 <template>
@@ -19,7 +19,7 @@ defineProps({
                 <Link :href="route('register')" class="bg-blue-500 text-white py-2 px-6 rounded-lg">Create User</Link>
             </div>
 
-            <table class="w-full border-collapse border border-gray-300">
+            <table class="w-full border-collapse border border-gray-300" v-if="users.length">
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="border border-gray-300 p-2">ID</th>
@@ -43,6 +43,8 @@ defineProps({
                     </tr>
                 </tbody>
             </table>
+
+            <p v-else class="text-center text-xl mt-10">Sorry No users found</p>
         </div>
 
     </section>

@@ -37,11 +37,42 @@ class AuthController extends Controller
         Auth::login($user);
 
         // Redirect
-        return redirect()->route('home');
+        return redirect()->route('dashboard');
     }
 
-    public function about()
+    public function login()
     {
-        return Inertia::render('About', ['title' => 'About Us']);
+        return Inertia::render('Auth.Login');
+    }
+
+    public function authenticate(Request $request)
+    {
+        // Validate
+        $fields = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        // Attempt
+        if (Auth::attempt($fields, $request->remember)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
     }
 }
