@@ -6,6 +6,7 @@ import { createInertiaApp, Head, Link } from '@inertiajs/vue3'
 import Layouts from './Layouts/Layouts.vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
+
 createInertiaApp({
     title: title => `${title} - App Name`,
     resolve: name => {

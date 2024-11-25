@@ -1,5 +1,5 @@
 <script setup>
-import demo from '../Layouts/Demo.vue';
+import demo from '../Layouts/AdminLayout.vue';
 
 // defineOptions({
 //     layout: demo,

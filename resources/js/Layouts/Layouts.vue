@@ -16,30 +16,40 @@ import {route} from '../../../vendor/tightenco/ziggy/src/js';
                     Home
                 </Link>
                 <Link :href="route('about')"
-                      :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'About'}]">
+                    :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'About'}]">
                     About
                 </Link>
 
                 <div v-if="$page.props.auth.user" class="flex gap-5 items-center">
+                    <Link :href="route('users.create')"
+                        :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'Users/UserCreate'}]">Create User
+                    </Link>
+                    
+                    <Link :href="route('users.index')"
+                        :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'Users'}]">Users
+                    </Link>
                     <Link :href="route('dashboard')"
-                          :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'Dashboard'}]">Dashboard
+                        :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'Dashboard'}]">Dashboard
                     </Link>
-                    <Link :href="route('users')"
-                          :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'Users'}]">Users
-                    </Link>
+
+                    <div class="flex gap-5 items-center">
+                        <img :src="$page.props.auth.user.avatar" alt="avatar" class="w-10 rounded-full">
+                        <p>{{ $page.props.auth.user.name }}</p>
+                    </div>
+                    
                     <Link :href="route('logout')"
-                          method="post"
-                          as="button"
-                          type="button">
+                        method="post"
+                        as="button"
+                        type="button">
                         Logout
                     </Link>
                 </div>
                 <div v-else class="flex gap-5 items-center">
                     <Link :href="route('login')"
-                          :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'Auth/Login'}]">Login
+                        :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'Auth/Login'}]">Login
                     </Link>
                     <Link :href="route('register')"
-                          :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'Auth/Register'}]">Register
+                        :class="['px-3 py-2 rounded', {'bg-blue-400' : $page.component === 'Auth/Register'}]">Register
                     </Link>
                 </div>
             </nav>
